@@ -285,7 +285,7 @@ namespace Xamarin.Forms.Controls
 			var rootLayout = new StackLayout ();
 			
 			var testCasesRoot = new ContentPage {
-				Title = "Bug Repro's",
+				Title = "Bug Repros",
 				Content = rootLayout
 			};
 

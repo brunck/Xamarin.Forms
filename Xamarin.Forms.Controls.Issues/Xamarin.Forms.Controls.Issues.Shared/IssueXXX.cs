@@ -15,7 +15,7 @@ namespace Xamarin.Forms.Controls.Issues
 	[Category(UITestCategories.Accessibility)]
 #endif
 	[Preserve(AllMembers = true)]
-	[Issue(IssueTracker.Github, 1, "Issue Description", PlatformAffected.iOS)]
+	[Issue(IssueTracker.Github, 13000, "Issue Description", PlatformAffected.iOS)]
 	public class IssueXXX : TestContentPage
 	{
 		protected override void Init()
@@ -33,13 +33,11 @@ namespace Xamarin.Forms.Controls.Issues
 				}
 			};
 
-			ToolbarItems = new List<ToolbarItem>
+			ToolbarItems.Add(new ToolbarItem
 			{
-				new ToolbarItem
-				{
-					AutomationId = "FirstToolbarButtonAutomationId", Text = "FirstToolbarButton"
-				}
-			};
+				AutomationId = "FirstToolbarButtonAutomationId",
+				Text = "FirstToolbarButton"
+			});
 
 			var testPage = new ContentPage
 			{
@@ -54,15 +52,13 @@ namespace Xamarin.Forms.Controls.Issues
 							VerticalOptions = LayoutOptions.Center
 						}
 					}
-				},
-				ToolbarItems = new List<ToolbarItem>
-				{
-					new ToolbarItem
-					{
-						AutomationId = "SecondToolbarButtonAutomationId", Text = "SecondToolbarButton"
-					}
 				}
 			};
+			testPage.ToolbarItems.Add(new ToolbarItem
+			{
+				AutomationId = "SecondToolbarButtonAutomationId",
+				Text = "SecondToolbarButton"
+			});
 			_ = Navigation.PushAsync(testPage);
 		}
 

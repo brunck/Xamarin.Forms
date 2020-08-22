@@ -61,6 +61,7 @@
       <SubType></SubType>
       <Generator></Generator>
     </EmbeddedResource>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="GalleryPages\RadioButtonGalleries\RadioButtonGroupGalleryPage.xaml">
