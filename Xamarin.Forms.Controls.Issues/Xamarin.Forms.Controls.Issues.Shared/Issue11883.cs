@@ -49,7 +49,11 @@ namespace Xamarin.Forms.Controls.Issues
 			ToolbarItems.Add(new ToolbarItem
 			{
 				AutomationId = "ToolbarButtonAutomationId",
-				Text = "ToolbarButton"
+				IconImageSource = new FontImageSource
+				{
+					Glyph = "\uf0c2",
+					FontFamily = "FontAwesome5Free-Solid"
+				}
 			});
 		}
 

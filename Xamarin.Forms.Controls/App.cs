@@ -127,7 +127,11 @@ namespace Xamarin.Forms.Controls
 			};
 			secondPage.ToolbarItems.Add(new ToolbarItem
 			{
-				Text = "ToolbarButton",
+				IconImageSource = new FontImageSource
+				{
+					Glyph = "\uf0c2",
+					FontFamily = "FontAwesome5Free-Solid"
+				},
 				AutomationId = "ToolbarButtonAutomationId"
 			});
 
@@ -152,7 +156,11 @@ namespace Xamarin.Forms.Controls
 			layout.Children.Add(button);
 			page.ToolbarItems.Add(new ToolbarItem
 			{
-				Text = "FirstPageToolbarItem",
+				IconImageSource = new FontImageSource
+				{
+					Glyph = "\uf0c2",
+					FontFamily = "FontAwesome5Free-Solid"
+				},
 				AutomationId = "FirstPageToolbarItemAutomationId"
 			});
 			return page;
