@@ -108,23 +108,54 @@ namespace Xamarin.Forms.Controls
 
 		public Page CreateDefaultMainPage()
 		{
-			var layout = new StackLayout { BackgroundColor = Color.Red };
-			layout.Children.Add(new Label { Text = "This is master Page" });
-			var master = new ContentPage { Title = "Master", Content = layout, BackgroundColor = Color.SkyBlue, IconImageSource ="menuIcon" };
-			master.On<iOS>().SetUseSafeArea(true);
-			var mdp = new MasterDetailPage
+			var secondPage = new ContentPage
 			{
-				AutomationId = DefaultMainPageId,
-				Master = master,
-				Detail = CoreGallery.GetMainPage()
+				Content = new StackLayout
+				{
+					VerticalOptions = LayoutOptions.Center,
+					HorizontalOptions = LayoutOptions.Center,
+					Children =
+					{
+						new Label
+						{
+							Text = "Second Page",
+							VerticalOptions = LayoutOptions.Center,
+							HorizontalOptions = LayoutOptions.Center
+						}
+					}
+				}
 			};
-			master.IconImageSource.AutomationId = "btnMDPAutomationID";
-			mdp.SetAutomationPropertiesName("Main page");
-			mdp.SetAutomationPropertiesHelpText("Main page help text");
-			mdp.Master.IconImageSource.SetAutomationPropertiesHelpText("This as MDP icon");
-			mdp.Master.IconImageSource.SetAutomationPropertiesName("MDPICON");
-			return mdp;
-			//return new XamStore.StoreShell();
+			secondPage.ToolbarItems.Add(new ToolbarItem
+			{
+				Text = "ToolbarButton",
+				AutomationId = "ToolbarButtonAutomationId"
+			});
+
+			var layout = new StackLayout
+			{
+				VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.Center,
+			};
+			var button = new Button
+			{
+				Text = "Push Page Onto Navigation Stack",
+				VerticalOptions = LayoutOptions.Center,
+				HorizontalOptions = LayoutOptions.Center,
+			};
+			var page = new ContentPage
+			{
+				Content = layout
+			};
+			button.Clicked += (sender, args) =>
+			{
+				page.Navigation.PushAsync(secondPage);
+			};
+			layout.Children.Add(button);
+			page.ToolbarItems.Add(new ToolbarItem
+			{
+				Text = "FirstPageToolbarItem",
+				AutomationId = "FirstPageToolbarItemAutomationId"
+			});
+			return page;
 		}
 
 		protected override void OnAppLinkRequestReceived(Uri uri)
@@ -171,7 +202,7 @@ namespace Xamarin.Forms.Controls
 
 		public void SetMainPage(Page rootPage)
 		{
-			MainPage = rootPage;
+			MainPage = new NavigationPage(rootPage);
 		}
 
 		static Assembly GetAssembly(out string assemblystring)
